@@ -1,0 +1,17 @@
+#this is the docker compose file for jenkins, it will build the image from the dockerfile. this is so all members of the team can have the same jenkins setup.
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: cicd/Dockerfile.jenkins
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+volumes:
+  jenkins_home:
