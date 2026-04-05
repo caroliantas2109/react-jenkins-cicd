@@ -1,0 +1,63 @@
+/* Reset some default styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f6f1e6, #ffffff);
+  color: #2b2b2b;
+}
+
+/* Main container */
+.App {
+  text-align: center;
+}
+
+/* Header styling */
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Group title */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #d2b48c;
+  /* soft beige accent */
+}
+
+/* Subtitle */
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #7a7264;
+}
+
+/* List styling */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Each name card */
+li {
+  background: white;
+  margin: 8px 0;
+  padding: 12px 20px;
+  border-radius: 12px;
+  width: 250px;
+
+  /* soft shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* smooth hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}

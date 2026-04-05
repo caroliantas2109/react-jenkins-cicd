@@ -1,0 +1,90 @@
+// this is just an s3 deployment pipeline, its static. ecr + ecs deployment needs to be in this file.
+
+//note* task-definition.json is a sample task definition for an ECS Fargate service. Replace <ACCOUNT_ID> and <IMAGE> with your actual values.**
+
+pipeline {
+    agent any
+
+    environment {
+        S3_BUCKET          = 'react-jenkins-cicd'
+        AWS_DEFAULT_REGION = 'us-east-1'
+    }
+
+    stages {
+
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:22-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    node --version
+                    npm --version
+                    npm install
+                    npm run build
+                '''
+            }
+        }
+
+        stage('Test') {
+            agent {
+                docker {
+                    image 'node:22-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    test -f build/index.html
+                    echo "Build OK"
+                '''
+            }
+        }
+
+        stage('Deploy to S3') {
+            agent {
+                docker {
+                    image 'amazon/aws-cli'
+                    reuseNode true
+                    args '--entrypoint=""'
+                }
+            }
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'reactAWS',
+                        usernameVariable: 'AWS_ACCESS_KEY_ID',
+                        passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+                    )
+                ]) {
+                    sh '''
+                        aws --version
+                        aws s3 sync build/ s3://$S3_BUCKET --delete
+                    '''
+                }
+            }
+        }
+
+        stage('Show URL') {
+            steps {
+                echo "App deployed to:"
+                echo "http://${S3_BUCKET}.s3-website-${AWS_DEFAULT_REGION}.amazonaws.com"
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline completed successfully."
+        }
+        failure {
+            echo "Pipeline failed. Check the logs above."
+        }
+        always {
+            cleanWs()
+        }
+    }
+}
