@@ -7,9 +7,9 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
-        ECR_REPO     = 160226155782.dkr.ecr.us-east-1.amazonaws.com/react-jenkins-cicd
-        ECS_CLUSTER   = react-jenkins-cluster-2
-        ECS_SERVICE   = react-jenkins-service
+        ECR_REPO     = '160226155782.dkr.ecr.us-east-1.amazonaws.com/react-jenkins-cicd'
+        ECS_CLUSTER   = 'react-jenkins-cluster-2'
+        ECS_SERVICE   = 'react-jenkins-service'
     }
 
     stages {
