@@ -10,7 +10,7 @@
   "containerDefinitions": [
     {
       "name": "react-jenkins-cicd",
-      "image": "160226155782.dkr.ecr.us-east-1.amazonaws.com/react-jenkins-cicd:latest",
+      "image": "IMAGE_PLACEHOLDER",
       "portMappings": [
         {
           "containerPort": 80,
