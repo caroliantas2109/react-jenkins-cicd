@@ -6,7 +6,7 @@
   ],
   "cpu": "256",
   "memory": "512",
-  "executionRoleArn": "arn:aws:iam::160226155782:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::203320211287:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "react-jenkins-cicd",
