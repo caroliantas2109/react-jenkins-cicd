@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
-        ECR_REPO     = '160226155782.dkr.ecr.us-east-1.amazonaws.com/my-react-app'
+        ECR_REPO     = '203320211287.dkr.ecr.us-east-2.amazonaws.com/my-react-app'
         ECS_CLUSTER   = 'flawless-dolphin-hddo8i'
         ECS_SERVICE   = 'my-react-service'
     }
