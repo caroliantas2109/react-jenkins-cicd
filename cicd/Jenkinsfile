@@ -82,12 +82,10 @@ stage('Deploy to AWS') {
     post {
         success {
             echo "Pipeline completed successfully."
+            cleanWs()
         }
         failure {
             echo "Pipeline failed. Check the logs above."
-        }
-        always {
-            cleanWs()
         }
     }
 }
